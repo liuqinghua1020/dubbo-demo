@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                        http://code.alibabatech.com/schema/dubbo
+                        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 扫描注解 -->
+    <mvc:annotation-driven />
+    <!-- <dubbo:annotation package="XXX.XXX.XXX.controller" /> -->
+    <context:component-scan base-package="com.shark.demo.*" />
+
+    <!-- 配置velocity引擎 -->
+    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="classpath:templates/" /><!-- 模板存放的路径 -->
+        <property name="configLocation" value="classpath:velocity.properties" />
+    </bean>
+
+    <!-- 配置视图的显示 -->
+    <bean id="ViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <!-- <property name="prefix" value="/" /> 视图文件的前缀，即存放的路径 -->
+        <property name="suffix" value=".html" /><!-- 视图文件的后缀名 -->
+        <!-- 避免乱码 -->
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        <property name="dateToolAttribute" value="dateTool" />
+        <property name="numberToolAttribute" value="numberTool" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+    </bean>
+</beans>
