@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
  */
 public class LoginServiceImp implements LoginService {
     public boolean login(String username, String pwd) {
-          if("netca".equals(username) && "netca".equals(pwd)){
+          if("abc".equals(username) && "abc".equals(pwd)){
               return true;
           }
           return false;
